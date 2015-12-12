@@ -22,7 +22,7 @@ use Ifsnop\Mysqldump as IMysqldump;
  */
 class DumpCommand extends Command
 {
-    protected $version = 'v1.0.0';
+    private $username, $password;
 
     protected function configure()
     {
@@ -40,23 +40,19 @@ class DumpCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Ask the user for database credentials
-        $helper = $this->getHelper('question');
-        $question = new Question('Username: ');
-        $username = $helper->ask($input, $output, $question);
+        $this->askCredentials($input, $output);
 
-        $question = new Question('Password: ');
-        $question->setHidden(true);
-        $question->setHiddenFallback(false);
-        $password = $helper->ask($input, $output, $question);
-
+        // Get arguments and options
         $name     = $input->getArgument('name');
         $compress = $input->getOption('compress');
         $dir      = $input->getOption('dump-dir');
 
+        // Todo: create dumps dir if not exists
         if (! $dir) $dir = getcwd() . '/dumps';
 
         $fileName = $dir . '/' . $name . '-' . date('Y-m-d') . '-' . time() . '.sql';
 
+        // DumpSettings
         $dumpSettings = ['compress' => IMysqldump\Mysqldump::NONE];
         $dumpSettings = ['skip-comments' => false];
 
@@ -74,8 +70,8 @@ class DumpCommand extends Command
         try
         {
             $output->writeln('');
-            $output->writeln('<comment>  Dumping database '.$name.' to \''.$dir.'\'... </comment>');
-            $dump = new IMysqldump\Mysqldump('mysql:host=localhost;dbname=' . $name, $username, $password, $dumpSettings);
+            $output->writeln('<comment>  Dumping database to '. $fileName . '</comment>');
+            $dump = new IMysqldump\Mysqldump('mysql:host=localhost;dbname=' . $name, $this->username, $this->password, $dumpSettings);
             $dump->start($fileName);
         }
         catch (\Exception $e)
@@ -89,5 +85,17 @@ class DumpCommand extends Command
         $output->writeln('');
         $output->writeln('<info>' . PHP_EOL . '  All Done!' . PHP_EOL . '</info>');
         $output->writeln('');
+    }
+
+    private function askCredentials($input, $output)
+    {
+        $helper = $this->getHelper('question');
+        $question = new Question('Username: ');
+        $this->username = $helper->ask($input, $output, $question);
+
+        $question = new Question('Password: ');
+        $question->setHidden(true);
+        $question->setHiddenFallback(false);
+        $this->password = $helper->ask($input, $output, $question);
     }
 }

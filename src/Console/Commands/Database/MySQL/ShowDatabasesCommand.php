@@ -20,6 +20,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
  */
 class ShowDatabasesCommand extends Command
 {
+    private $username, $password;
+
     protected function configure()
     {
         $this->setName('db:list')
@@ -35,14 +37,7 @@ class ShowDatabasesCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Ask the user for database credentials
-        $helper = $this->getHelper('question');
-        $question = new Question('Username: ');
-        $username = $helper->ask($input, $output, $question);
-
-        $question = new Question('Password: ');
-        $question->setHidden(true);
-        $question->setHiddenFallback(false);
-        $password = $helper->ask($input, $output, $question);
+        $this->askCredentials($input, $output);
 
         // Setup table headers and rows
         if ($input->getOption('with-default-collation'))
@@ -62,10 +57,10 @@ class ShowDatabasesCommand extends Command
 
         $capsule->addConnection([
             'driver'    => 'mysql',
-            'host'      => 'localhost',
+            'host'      => '127.0.0.1',
             'database'  => 'INFORMATION_SCHEMA',
-            'username'  => $username,
-            'password'  => $password,
+            'username'  => $this->username,
+            'password'  => $this->password,
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
@@ -87,5 +82,17 @@ class ShowDatabasesCommand extends Command
         }
 
         return $rows;
+    }
+
+    private function askCredentials($input, $output)
+    {
+        $helper = $this->getHelper('question');
+        $question = new Question('Username: ');
+        $this->username = $helper->ask($input, $output, $question);
+
+        $question = new Question('Password: ');
+        $question->setHidden(true);
+        $question->setHiddenFallback(false);
+        $this->password = $helper->ask($input, $output, $question);
     }
 }
