@@ -75,6 +75,7 @@ Gizmo Console Application
       Help:
        Lists MySQL databases
 
+    [gizmo] ./gizmo db:list
       Username: root
       Password:
 
