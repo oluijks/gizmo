@@ -14,7 +14,7 @@ Gizmo is open-sourced software licensed under the MIT license.
 
 ### Help
 
-    Gizmo Console Application version 0.0.8
+    Gizmo Console Application version 0.0.9
 
     Usage:
       command [options] [arguments]

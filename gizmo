@@ -5,7 +5,7 @@
  * Gizmo Console Application
  *
  * @author  Olaf Luijks
- * @version 0.0.8
+ * @version 0.0.9
  *
  * Copyright 2015 Olaf Luijks
  * Licensed under the MIT license
@@ -29,7 +29,7 @@ use Gizmo\Console\Commands\UpdateCommand;
 
 use Symfony\Component\Console\Application;
 
-$gizmo = new Application('Gizmo Console Application', '0.0.8');
+$gizmo = new Application('Gizmo Console Application', '0.0.9');
 // Database commands
 $gizmo->add(new DatabaseDumpCommand());
 $gizmo->add(new ListsDatabasesCommand());
