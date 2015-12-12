@@ -5,7 +5,7 @@
  * Gizmo Console Application
  *
  * @author  Olaf Luijks
- * @version 0.0.7
+ * @version 0.0.8
  */
 
 // passthru('clear');
@@ -16,6 +16,7 @@ use Gizmo\Console\Commands\ConfigCommand;
 use Gizmo\Console\Commands\Database\MySQL\DatabaseDumpCommand;
 use Gizmo\Console\Commands\Database\MySQL\ListsDatabasesCommand;
 use Gizmo\Console\Commands\Downloads\DownloadWordPressCommand;
+use Gizmo\Console\Commands\Downloads\DownloadMagento2Command;
 use Gizmo\Console\Commands\Webserver\RestartPhp5Command;
 use Gizmo\Console\Commands\Webserver\RestartNginxCommand;
 use Gizmo\Console\Commands\Webserver\RestartMySqlCommand;
@@ -24,7 +25,7 @@ use Gizmo\Console\Commands\UpdateCommand;
 
 use Symfony\Component\Console\Application;
 
-$gizmo = new Application('Gizmo Console Application', '0.0.7');
+$gizmo = new Application('Gizmo Console Application', '0.0.8');
 // Config commands
 $gizmo->add(new ConfigCommand());
 // Database commands
@@ -32,6 +33,7 @@ $gizmo->add(new DatabaseDumpCommand());
 $gizmo->add(new ListsDatabasesCommand());
 // Downloads commands
 $gizmo->add(new DownloadWordPressCommand());
+$gizmo->add(new DownloadMagento2Command());
 // Webserver commands
 $gizmo->add(new WebserverStatusCommand());
 $gizmo->add(new RestartNginxCommand());
