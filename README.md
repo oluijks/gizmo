@@ -9,7 +9,7 @@ Gizmo Console Application
 
 ### Help
 
-    Gizmo Console Application version 0.0.5
+    Gizmo Console Application version 0.0.6
 
     Usage:
       command [options] [arguments]
