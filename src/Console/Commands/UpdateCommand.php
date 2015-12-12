@@ -19,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class UpdateCommand extends Command
 {
-    const MANIFEST_FILE = 'http://oluijks.github.io/gizmo/manifest.json';
+    const MANIFEST_FILE = 'http://oluijks.github.io/gizmo/downloads/manifest.json';
 
     /**
      * Configure the command options
