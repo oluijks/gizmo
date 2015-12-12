@@ -34,6 +34,7 @@ Gizmo Console Application
       db:dump                     Dumps structure and contents of MySQL database and tables
       db:list                     Lists MySQL databases
       download
+       download:magento2          Grab the lastest magento2 version
        download:wordpress         Grab the lastest wordpress version
      webserver
       webserver:mysql:restart     Restarts MySQL
@@ -65,7 +66,7 @@ Gizmo Console Application
 
        All Done!
 
-## ./gizmo help db:Lists
+## ./gizmo help db:list
 
     [gizmo] ./gizmo help db:dump
       Usage:
@@ -90,7 +91,8 @@ Gizmo Console Application
       +--------------------+
 
 ## ./gizmo help download:wordpress
-    [gizmo] ./gizmo help download:wordpress     Usage:
+    [gizmo] ./gizmo help download:wordpress     
+      Usage:
         download:wordpress
 
       Help:
