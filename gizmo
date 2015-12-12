@@ -13,7 +13,7 @@
 require __DIR__.'/vendor/autoload.php';
 
 use Gizmo\Console\Commands\ConfigCommand;
-use Gizmo\Console\Commands\Database\MySQL\DumpCommand;
+use Gizmo\Console\Commands\Database\MySQL\DatabaseDumpCommand;
 use Gizmo\Console\Commands\Database\MySQL\ListsDatabasesCommand;
 use Gizmo\Console\Commands\Webserver\RestartPhp5Command;
 use Gizmo\Console\Commands\Webserver\RestartNginxCommand;
@@ -26,7 +26,7 @@ $gizmo = new Application('Gizmo Console Application', '0.0.3');
 // Config commands
 $gizmo->add(new ConfigCommand());
 // Mysql commands
-$gizmo->add(new DumpCommand());
+$gizmo->add(new DatabaseDumpCommand());
 $gizmo->add(new ListsDatabasesCommand());
 // Php5 commands
 $gizmo->add(new RestartPhp5Command());

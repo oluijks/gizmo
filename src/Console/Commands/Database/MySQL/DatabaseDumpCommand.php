@@ -20,7 +20,7 @@ use Ifsnop\Mysqldump as IMysqldump;
  * @author  Olaf Luijks
  * @see https://github.com/ifsnop/mysqldump-php
  */
-class DumpCommand extends Command
+class DatabaseDumpCommand extends Command
 {
     /**
      * @var string
@@ -92,9 +92,7 @@ class DumpCommand extends Command
             exit(-1);
         }
 
-        $output->writeln('');
         $output->writeln('<info>' . PHP_EOL . '  All Done!' . PHP_EOL . '</info>');
-        $output->writeln('');
     }
 
     /**

@@ -62,6 +62,7 @@ class ListsDatabasesCommand extends Command
         $table = new Table($output);
         $output->writeln('');
         $table->setHeaders($headers)->setRows($rows)->render();
+        $output->writeln('');
     }
 
     protected function getDatabases($input, $username, $password, $collation)
