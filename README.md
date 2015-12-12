@@ -8,6 +8,7 @@ Gizmo Console Application
 * MySQLDump - PHP (https://github.com/ifsnop/mysqldump-php)
 
 
+
     Gizmo Console Application version 0.0.5
 
     Usage:
