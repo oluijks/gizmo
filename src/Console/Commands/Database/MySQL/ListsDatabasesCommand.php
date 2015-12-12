@@ -18,9 +18,17 @@ use Illuminate\Database\Capsule\Manager as Capsule;
  *
  * @author  Olaf Luijks
  */
-class ShowDatabasesCommand extends Command
+class ListsDatabasesCommand extends Command
 {
-    private $username, $password;
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $password;
 
     protected function configure()
     {
@@ -36,28 +44,64 @@ class ShowDatabasesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln('');
+
         // Ask the user for database credentials
         $this->askCredentials($input, $output);
 
+        $collation = $input->getOption('with-default-collation');
+
         // Setup table headers and rows
-        if ($input->getOption('with-default-collation'))
+        if ($collation)
             $headers = ['SCHEMA_NAME', 'DEFAULT_COLLATION_NAME'];
         else
             $headers = ['SCHEMA_NAME'];
 
-        $rows = $this->getDatabases($input, $username, $password);
+        $rows = $this->getDatabases($input, $username, $password, $collation);
 
         $table = new Table($output);
+        $output->writeln('');
         $table->setHeaders($headers)->setRows($rows)->render();
     }
 
-    protected function getDatabases($input, $username, $password)
+    protected function getDatabases($input, $username, $password, $collation)
+    {
+        $this->connect();
+
+        $tables = 'SCHEMA_NAME';
+        if ($collation)
+            $tables .= ', DEFAULT_COLLATION_NAME';
+
+        $query = '
+            SELECT ' . $tables . '
+            FROM INFORMATION_SCHEMA.SCHEMATA
+            ORDER BY SCHEMA_NAME';
+
+        $dbs = Capsule::select($query);
+
+        $rows = [];
+
+        for ($i = 0; $i < count($dbs); $i++) {
+            $rows[$i][] = $dbs[$i]->SCHEMA_NAME;
+            if ($collation)
+                $rows[$i][] = $dbs[$i]->DEFAULT_COLLATION_NAME;
+        }
+
+        return $rows;
+    }
+
+    /**
+     * Connects to the database
+     *
+     * @return void
+     */
+    private function connect()
     {
         $capsule = new Capsule;
 
         $capsule->addConnection([
             'driver'    => 'mysql',
-            'host'      => '127.0.0.1',
+            'host'      => 'localhost',
             'database'  => 'INFORMATION_SCHEMA',
             'username'  => $this->username,
             'password'  => $this->password,
@@ -68,22 +112,13 @@ class ShowDatabasesCommand extends Command
 
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
-
-        $query = 'SELECT SCHEMA_NAME, DEFAULT_COLLATION_NAME FROM INFORMATION_SCHEMA.SCHEMATA ORDER BY SCHEMA_NAME';
-
-        $dbs = Capsule::select($query);
-
-        $rows = [];
-
-        for ($i = 0; $i < count($dbs); $i++) {
-            $rows[$i][] = $dbs[$i]->SCHEMA_NAME;
-            if ($input->getOption('with-default-collation'))
-                $rows[$i][] = $dbs[$i]->DEFAULT_COLLATION_NAME;
-        }
-
-        return $rows;
     }
 
+    /**
+     * Asks the use for database credentials
+     *
+     * @return void
+     */
     private function askCredentials($input, $output)
     {
         $helper = $this->getHelper('question');

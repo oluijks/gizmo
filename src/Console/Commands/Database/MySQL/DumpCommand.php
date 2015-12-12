@@ -22,7 +22,15 @@ use Ifsnop\Mysqldump as IMysqldump;
  */
 class DumpCommand extends Command
 {
-    private $username, $password;
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $password;
 
     protected function configure()
     {
@@ -39,6 +47,8 @@ class DumpCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln('');
+
         // Ask the user for database credentials
         $this->askCredentials($input, $output);
 
@@ -52,7 +62,7 @@ class DumpCommand extends Command
 
         $fileName = $dir . '/' . $name . '-' . date('Y-m-d') . '-' . time() . '.sql';
 
-        // DumpSettings
+        // Dump settings
         $dumpSettings = ['compress' => IMysqldump\Mysqldump::NONE];
         $dumpSettings = ['skip-comments' => false];
 
@@ -66,7 +76,7 @@ class DumpCommand extends Command
             $fileName .= '.bz2';
         }
 
-        // Create the database dump
+        // Try to create the database dump
         try
         {
             $output->writeln('');
@@ -87,6 +97,11 @@ class DumpCommand extends Command
         $output->writeln('');
     }
 
+    /**
+     * Asks the use for database credentials
+     *
+     * @return void
+     */
     private function askCredentials($input, $output)
     {
         $helper = $this->getHelper('question');
