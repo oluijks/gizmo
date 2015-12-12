@@ -41,7 +41,7 @@ Gizmo Console Application
 
 ## ./gizmo help db:dump
 
-      [gizmo] ./gizmo help db:dump
+    [gizmo] ./gizmo help db:dump
       Usage:
         db:dump [options] [--] <name>
 
@@ -65,25 +65,26 @@ Gizmo Console Application
 
 ## ./gizmo help db:Lists
 
-    Usage:
-      db:list [options]
+    [gizmo] ./gizmo help db:dump
+      Usage:
+        db:list [options]
 
-    Options:
-          --with-default-collation  Show the databases default collation names
+      Options:
+            --with-default-collation  Show the databases default collation names
 
-    Help:
-     Lists MySQL databases
+      Help:
+       Lists MySQL databases
 
-    Username: root
-    Password:
+      Username: root
+      Password:
 
-    +--------------------+
-    | SCHEMA_NAME        |
-    +--------------------+
-    | information_schema |
-    | mysql              |
-    | performance_schema |
-    +--------------------+
+      +--------------------+
+      | SCHEMA_NAME        |
+      +--------------------+
+      | information_schema |
+      | mysql              |
+      | performance_schema |
+      +--------------------+
 
 ## ./gizmo webserver:mysql:restart
 
