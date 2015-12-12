@@ -1,6 +1,6 @@
 <?php
 
-namespace Gizmo\Console\Commands\PHP;
+namespace Gizmo\Console\Commands\Webserver;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -19,8 +19,8 @@ class RestartPhp5Command extends Command
 {
     protected function configure()
     {
-        $this->setName('php5:restart')
-             ->setDescription('Restarts the FastCGI Process Manager');
+        $this->setName('webserver:php5-fpm:restart')
+             ->setDescription('Restarts PHP5-FPM');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -28,11 +28,11 @@ class RestartPhp5Command extends Command
         exec('sudo service php5-fpm restart 2>&1', $retArr, $retVal);
 
         $output->writeln('');
-        $output->writeln('<info>' . PHP_EOL . $retArr[0] .'</info>');
+        $output->writeln('<info>' . PHP_EOL . '  ' . $retArr[0] .'</info>');
 
         $o = exec('sudo service php5-fpm status 2>&1');
 
-        $output->writeln('<comment>' . PHP_EOL . $o . PHP_EOL . '</comment>');
+        $output->writeln('<comment>' . PHP_EOL . '  ' . $o . PHP_EOL . '</comment>');
         $output->writeln('');
     }
 }

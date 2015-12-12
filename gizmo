@@ -15,9 +15,9 @@ require __DIR__.'/vendor/autoload.php';
 use Gizmo\Console\Commands\ConfigCommand;
 use Gizmo\Console\Commands\Database\MySQL\DumpCommand;
 use Gizmo\Console\Commands\Database\MySQL\ListsDatabasesCommand;
-use Gizmo\Console\Commands\PHP\RestartPhp5Command;
-use Gizmo\Console\Commands\Webserver\Nginx\RestartNginxCommand;
-use Gizmo\Console\Commands\Server\ServerHealthCheckCommand;
+use Gizmo\Console\Commands\Webserver\RestartPhp5Command;
+use Gizmo\Console\Commands\Webserver\RestartNginxCommand;
+use Gizmo\Console\Commands\Webserver\WebserverStatusCommand;
 use Gizmo\Console\Commands\UpdateCommand;
 
 use Symfony\Component\Console\Application;
@@ -30,10 +30,10 @@ $gizmo->add(new DumpCommand());
 $gizmo->add(new ListsDatabasesCommand());
 // Php5 commands
 $gizmo->add(new RestartPhp5Command());
-// Nginx commands
+
+// Webserver commands
+$gizmo->add(new WebserverStatusCommand());
 $gizmo->add(new RestartNginxCommand());
-// Server commands
-$gizmo->add(new ServerHealthCheckCommand());
 // Gizmo commands
 $gizmo->add(new UpdateCommand());
 // Run this baby

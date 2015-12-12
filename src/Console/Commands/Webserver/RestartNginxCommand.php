@@ -1,6 +1,6 @@
 <?php
 
-namespace Gizmo\Console\Commands\Webserver\Nginx;
+namespace Gizmo\Console\Commands\Webserver;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -19,8 +19,8 @@ class RestartNginxCommand extends Command
 {
     protected function configure()
     {
-        $this->setName('nginx:restart')
-             ->setDescription('Restarts the nginx webserver');
+        $this->setName('webserver:nginx:restart')
+             ->setDescription('Restarts Engine-X');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -28,11 +28,11 @@ class RestartNginxCommand extends Command
         exec('sudo service nginx restart 2>&1', $retArr, $retVal);
 
         $output->writeln('');
-        $output->writeln('<info>' . PHP_EOL . $retArr[0] .'</info>');
+        $output->writeln('<info>' . PHP_EOL . ' ' . $retArr[0] .'</info>');
 
         $o = exec('sudo service nginx status 2>&1');
 
-        $output->writeln('<comment>' . PHP_EOL . $o . PHP_EOL . '</comment>');
+        $output->writeln('<comment>' . PHP_EOL . ' ' . $o . PHP_EOL . '</comment>');
         $output->writeln('');
     }
 }
