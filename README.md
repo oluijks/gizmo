@@ -1,6 +1,10 @@
 # Gizmo
 Gizmo Console Application
 
+## License
+
+Gizmo is open-sourced software licensed under the MIT license.
+
 ## Stuff used to make this
 * Symfony Console Component (https://github.com/symfony/console)
 * Symfony Process Component (https://github.com/symfony/process)

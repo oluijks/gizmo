@@ -6,6 +6,10 @@
  *
  * @author  Olaf Luijks
  * @version 0.0.8
+ *
+ * Copyright 2015 Olaf Luijks
+ * Licensed under the MIT license
+ * @link https://github.com/oluijks/gizmo/blob/master/LICENSE
  */
 
 // passthru('clear');
@@ -26,8 +30,6 @@ use Gizmo\Console\Commands\UpdateCommand;
 use Symfony\Component\Console\Application;
 
 $gizmo = new Application('Gizmo Console Application', '0.0.8');
-// Config commands
-$gizmo->add(new ConfigCommand());
 // Database commands
 $gizmo->add(new DatabaseDumpCommand());
 $gizmo->add(new ListsDatabasesCommand());
@@ -40,6 +42,7 @@ $gizmo->add(new RestartNginxCommand());
 $gizmo->add(new RestartPhp5Command());
 $gizmo->add(new RestartMySqlCommand());
 // Gizmo commands
+$gizmo->add(new ConfigCommand());
 $gizmo->add(new UpdateCommand());
-// Run this baby
+// Run baby
 $gizmo->run();
