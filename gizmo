@@ -29,7 +29,7 @@ use Gizmo\Console\Commands\UpdateCommand;
 
 use Symfony\Component\Console\Application;
 
-$gizmo = new Application('Gizmo Console Application', '1.0.0');
+$gizmo = new Application('Gizmo Console Application', '@package_version@');
 // Database commands
 $gizmo->add(new DatabaseDumpCommand());
 $gizmo->add(new ListsDatabasesCommand());
