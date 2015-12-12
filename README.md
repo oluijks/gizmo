@@ -1,7 +1,5 @@
-# gizmo
+# Gizmo
 Gizmo Console Application
-
-    [gizmo] ./gizmo
 
     Gizmo Console Application version 0.0.1
 
@@ -15,7 +13,8 @@ Gizmo Console Application
           --ansi            Force ANSI output
           --no-ansi         Disable ANSI output
       -n, --no-interaction  Do not ask any interactive question
-      -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+      -v|vv|vvv, --verbose  Increase the verbosity of messages:
+                            1 for normal output, 2 for more verbose output and 3 for debug
 
     Available commands:
       config         Configure Gizmo
@@ -31,3 +30,8 @@ Gizmo Console Application
       php5:restart   Restarts the FastCGI Process Manager
      server
       server:health  Shows the server health
+
+# Uses
+* Symfony Console Component (https://github.com/symfony/console)
+* Illuminate Database (https://github.com/illuminate/database)
+* MySQLDump - PHP (https://github.com/ifsnop/mysqldump-php)
