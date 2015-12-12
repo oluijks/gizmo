@@ -1,7 +1,7 @@
 # Gizmo
 Gizmo Console Application
 
-## Uses
+## Stuff used to make this
 * Symfony Console Component (https://github.com/symfony/console)
 * Symfony Process Component (https://github.com/symfony/process)
 * Illuminate Database (https://github.com/illuminate/database)
@@ -54,6 +54,15 @@ Gizmo Console Application
       Help:
        Dumps structure and contents of MySQL database and tables
 
+    [gizmo] ./gizmo db:dump information_schema --dump-dir=/home/oluijks
+
+       Username: root
+       Password:
+
+       Dumping database to /home/oluijks/information_schema-2015-12-12-1449933289.sql
+
+       All Done!
+
 ## ./gizmo help db:Lists
 
     Usage:
@@ -84,6 +93,12 @@ Gizmo Console Application
     Help:
      Restarts MySQL
 
+    [gizmo] ./gizmo webserver:mysql:restart
+     mysql stop/waiting
+
+     mysql start/running, process 19395
+
+
 ## ./gizmo help webserver:nginx:restart
 
     Usage:
@@ -92,13 +107,23 @@ Gizmo Console Application
     Help:
      Restarts Engine-X
 
+    [gizmo] ./gizmo webserver:nginx:restart
+     * Restarting nginx nginx
+
+     * nginx is running
+
 ## ./gizmo help webserver:php5-fpm:restart
 
-Usage:
-  webserver:php5-fpm:restart
+    Usage:
+      webserver:php5-fpm:restart
 
     Help:
      Restarts PHP5-FPM
+
+    [gizmo] ./gizmo webserver:php5-fpm:restart
+     php5-fpm stop/waiting
+
+     php5-fpm start/running, process 19057
 
 ## ./gizmo help webserver:status
 
