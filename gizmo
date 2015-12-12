@@ -5,7 +5,7 @@
  * Gizmo Console Application
  *
  * @author  Olaf Luijks
- * @version 0.0.4
+ * @version 0.0.5
  */
 
 // passthru('clear');
@@ -17,23 +17,23 @@ use Gizmo\Console\Commands\Database\MySQL\DatabaseDumpCommand;
 use Gizmo\Console\Commands\Database\MySQL\ListsDatabasesCommand;
 use Gizmo\Console\Commands\Webserver\RestartPhp5Command;
 use Gizmo\Console\Commands\Webserver\RestartNginxCommand;
+use Gizmo\Console\Commands\Webserver\RestartMySqlCommand;
 use Gizmo\Console\Commands\Webserver\WebserverStatusCommand;
 use Gizmo\Console\Commands\UpdateCommand;
 
 use Symfony\Component\Console\Application;
 
-$gizmo = new Application('Gizmo Console Application', '0.0.4');
+$gizmo = new Application('Gizmo Console Application', '0.0.5');
 // Config commands
 $gizmo->add(new ConfigCommand());
-// Mysql commands
+// Database commands
 $gizmo->add(new DatabaseDumpCommand());
 $gizmo->add(new ListsDatabasesCommand());
-// Php5 commands
-$gizmo->add(new RestartPhp5Command());
-
 // Webserver commands
 $gizmo->add(new WebserverStatusCommand());
 $gizmo->add(new RestartNginxCommand());
+$gizmo->add(new RestartPhp5Command());
+$gizmo->add(new RestartMySqlCommand());
 // Gizmo commands
 $gizmo->add(new UpdateCommand());
 // Run this baby
