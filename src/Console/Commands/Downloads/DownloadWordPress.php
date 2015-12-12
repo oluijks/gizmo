@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class DownloadWordPressCommand extends Command
 {
     /**
-     * Configure the command options/
+     * Configure the command options
      *
      * @return void
      */

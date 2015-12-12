@@ -17,12 +17,24 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class RestartPhp5Command extends Command
 {
+    /**
+     * Configure the command options
+     *
+     * @return void
+     */
     protected function configure()
     {
         $this->setName('webserver:php5-fpm:restart')
              ->setDescription('Restarts PHP5-FPM');
     }
 
+    /**
+     * Execute the command
+     *
+     * @param  InputInterface   $input
+     * @param  OutputInterface  $output
+     * @return void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         exec('sudo service php5-fpm restart 2>&1', $retArr, $retVal);

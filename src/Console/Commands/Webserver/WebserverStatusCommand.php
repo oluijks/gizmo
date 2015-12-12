@@ -19,12 +19,24 @@ use Symfony\Component\Console\Helper\TableCell;
  */
 class WebserverStatusCommand extends Command
 {
+    /**
+     * Configure the command options
+     *
+     * @return void
+     */
     protected function configure()
     {
         $this->setName('webserver:status')
              ->setDescription('Webserver status');
     }
 
+    /**
+     * Execute the command
+     *
+     * @param  InputInterface   $input
+     * @param  OutputInterface  $output
+     * @return void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         exec('uptime -p 2>&1', $uptimeretArr, $uptimeretVal);

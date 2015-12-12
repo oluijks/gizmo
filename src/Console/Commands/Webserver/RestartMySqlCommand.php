@@ -17,12 +17,24 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class RestartMySqlCommand extends Command
 {
+    /**
+     * Configure the command options
+     *
+     * @return void
+     */
     protected function configure()
     {
         $this->setName('webserver:mysql:restart')
              ->setDescription('Restarts MySQL');
     }
 
+    /**
+     * Execute the command
+     *
+     * @param  InputInterface   $input
+     * @param  OutputInterface  $output
+     * @return void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         exec('sudo service mysql restart 2>&1', $retArr, $retVal);

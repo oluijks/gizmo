@@ -32,6 +32,11 @@ class DatabaseDumpCommand extends Command
      */
     private $password;
 
+    /**
+     * Configure the command options
+     *
+     * @return void
+     */
     protected function configure()
     {
         $this->setName('db:dump')
@@ -45,6 +50,13 @@ class DatabaseDumpCommand extends Command
              ->addOption('compress', 'bzip2|gzip', InputOption::VALUE_OPTIONAL, 'Compress the database dump');
     }
 
+    /**
+     * Execute the command
+     *
+     * @param  InputInterface   $input
+     * @param  OutputInterface  $output
+     * @return void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('');

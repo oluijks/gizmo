@@ -17,12 +17,24 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class RestartNginxCommand extends Command
 {
+    /**
+     * Configure the command options
+     *
+     * @return void
+     */
     protected function configure()
     {
         $this->setName('webserver:nginx:restart')
              ->setDescription('Restarts Engine-X');
     }
 
+    /**
+     * Execute the command
+     *
+     * @param  InputInterface   $input
+     * @param  OutputInterface  $output
+     * @return void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         exec('sudo service nginx restart 2>&1', $retArr, $retVal);
