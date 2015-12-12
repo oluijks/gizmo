@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * Gizmo Console Application
+ *
+ * @author  Olaf Luijks
+ * @version 0.0.1
+ */
+
+// passthru('clear');
+
+require __DIR__.'/vendor/autoload.php';
+
+use Gizmo\Console\Commands\ConfigCommand;
+
+use Gizmo\Console\Commands\Database\MySQL\DumpCommand;
+use Gizmo\Console\Commands\Database\MySQL\ShowDatabasesCommand;
+
+use Gizmo\Console\Commands\PHP\RestartPhp5Command;
+
+use Gizmo\Console\Commands\Webserver\Nginx\RestartNginxCommand;
+
+use Gizmo\Console\Commands\Server\ServerHealthCheckCommand;
+
+use Gizmo\Console\Commands\UpdateCommand;
+
+use Symfony\Component\Console\Application;
+
+$application = new Application('Gizmo Console Application', '0.0.1');
+
+$application->add(new ConfigCommand());
+// Mysql commands
+$application->add(new DumpCommand());
+$application->add(new ShowDatabasesCommand());
+// Php5 commands
+$application->add(new RestartPhp5Command());
+// Nginx commands
+$application->add(new RestartNginxCommand());
+// Server commands
+$application->add(new ServerHealthCheckCommand());
+// Gizmo commands
+$application->add(new UpdateCommand());
+$application->run();

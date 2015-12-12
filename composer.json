@@ -1,0 +1,26 @@
+{
+    "name": "oluijks/gizmo",
+    "description": "Man at gas station try to sell me. Latest word in technology. Sure will come in handy.",
+    "type": "project",
+    "require": {
+        "symfony/console": "^3.0",
+        "symfony/process": "^3.0",
+        "illuminate/database": "^5.1",
+        "ifsnop/mysqldump-php": "^2.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Olaf Luijks",
+            "email": "oluijks@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Gizmo\\Console\\Commands\\": "src/"
+        }
+    },
+    "bin": [
+        "gizmo"
+    ]
+}
