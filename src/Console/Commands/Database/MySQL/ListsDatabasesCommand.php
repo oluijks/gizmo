@@ -77,6 +77,15 @@ class ListsDatabasesCommand extends Command
         $output->writeln('');
     }
 
+    /**
+     * Execute the command
+     *
+     * @param  InputInterface   $input
+     * @param  username         $username
+     * @param  password         $password
+     * @param  collation        $collation
+     * @return $rows            mixed
+     */
     protected function getDatabases($input, $username, $password, $collation)
     {
         $this->connect();

@@ -74,6 +74,7 @@ class DownloadWordPressCommand extends Command
 
         return $this;
     }
+    
     /**
      * Extract the zip file into the given directory
      *

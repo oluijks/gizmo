@@ -74,6 +74,7 @@ class DownloadMagento2Command extends Command
 
         return $this;
     }
+    
     /**
      * Extract the zip file into the given directory
      *
