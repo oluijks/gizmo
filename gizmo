@@ -5,7 +5,7 @@
  * Gizmo Console Application
  *
  * @author  Olaf Luijks
- * @version 0.0.6
+ * @version 0.0.7
  */
 
 // passthru('clear');
@@ -15,6 +15,7 @@ require __DIR__.'/vendor/autoload.php';
 use Gizmo\Console\Commands\ConfigCommand;
 use Gizmo\Console\Commands\Database\MySQL\DatabaseDumpCommand;
 use Gizmo\Console\Commands\Database\MySQL\ListsDatabasesCommand;
+use Gizmo\Console\Commands\Downloads\DownloadWordPressCommand;
 use Gizmo\Console\Commands\Webserver\RestartPhp5Command;
 use Gizmo\Console\Commands\Webserver\RestartNginxCommand;
 use Gizmo\Console\Commands\Webserver\RestartMySqlCommand;
@@ -23,12 +24,14 @@ use Gizmo\Console\Commands\UpdateCommand;
 
 use Symfony\Component\Console\Application;
 
-$gizmo = new Application('Gizmo Console Application', '0.0.6');
+$gizmo = new Application('Gizmo Console Application', '0.0.7');
 // Config commands
 $gizmo->add(new ConfigCommand());
 // Database commands
 $gizmo->add(new DatabaseDumpCommand());
 $gizmo->add(new ListsDatabasesCommand());
+// Downloads commands
+$gizmo->add(new DownloadWordPressCommand());
 // Webserver commands
 $gizmo->add(new WebserverStatusCommand());
 $gizmo->add(new RestartNginxCommand());

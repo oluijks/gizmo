@@ -6,10 +6,11 @@ Gizmo Console Application
 * Symfony Process Component (https://github.com/symfony/process)
 * Illuminate Database (https://github.com/illuminate/database)
 * MySQLDump - PHP (https://github.com/ifsnop/mysqldump-php)
+* Guzzle, an extensible PHP HTTP client (https://github.com/guzzle/guzzle)
 
 ### Help
 
-    Gizmo Console Application version 0.0.6
+    Gizmo Console Application version 0.0.7
 
     Usage:
       command [options] [arguments]
@@ -32,12 +33,13 @@ Gizmo Console Application
      db
       db:dump                     Dumps structure and contents of MySQL database and tables
       db:list                     Lists MySQL databases
+      download
+       download:wordpress         Grab the lastest wordpress version
      webserver
       webserver:mysql:restart     Restarts MySQL
       webserver:nginx:restart     Restarts Engine-X
       webserver:php5-fpm:restart  Restarts PHP5-FPM
       webserver:status            Webserver status
-
 
 ## ./gizmo help db:dump
 
@@ -86,6 +88,19 @@ Gizmo Console Application
       | mysql              |
       | performance_schema |
       +--------------------+
+
+## ./gizmo help download:wordpress
+    [gizmo] ./gizmo help download:wordpress     Usage:
+        download:wordpress
+
+      Help:
+       Grab the lastest wordpress version
+
+     [gizmo] ./gizmo download:wordpress
+
+         Downloading Wordpress...
+
+         All Done!
 
 ## ./gizmo webserver:mysql:restart
 

@@ -6,7 +6,8 @@
         "symfony/console": "^3.0",
         "symfony/process": "^3.0",
         "illuminate/database": "^5.1",
-        "ifsnop/mysqldump-php": "^2.1"
+        "ifsnop/mysqldump-php": "^2.1",
+        "guzzlehttp/guzzle": "^6.1"
     },
     "license": "MIT",
     "authors": [
