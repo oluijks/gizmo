@@ -1,14 +1,7 @@
 {
     "name": "oluijks/gizmo",
-    "description": "Man at gas station try to sell me. Latest word in technology. Sure will come in handy.",
+    "description": "Gizmo Console Application",
     "type": "project",
-    "require": {
-        "symfony/console": "^3.0",
-        "symfony/process": "^3.0",
-        "illuminate/database": "^5.1",
-        "ifsnop/mysqldump-php": "^2.1",
-        "guzzlehttp/guzzle": "^6.1"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -16,6 +9,14 @@
             "email": "oluijks@gmail.com"
         }
     ],
+    "require": {
+        "php": ">=5.5.9",
+        "guzzlehttp/guzzle": "^6.1",
+        "ifsnop/mysqldump-php": "^2.1",
+        "illuminate/database": "^5.1",
+        "symfony/console": "^3.0",
+        "symfony/process": "^3.0"
+    },
     "autoload": {
         "psr-4": {
             "Gizmo\\Console\\Commands\\": "src/"
