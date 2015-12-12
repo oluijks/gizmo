@@ -7,8 +7,6 @@ Gizmo Console Application
 * Illuminate Database (https://github.com/illuminate/database)
 * MySQLDump - PHP (https://github.com/ifsnop/mysqldump-php)
 
-
-
     Gizmo Console Application version 0.0.5
 
     Usage:
