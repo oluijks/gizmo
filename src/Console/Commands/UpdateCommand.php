@@ -43,5 +43,9 @@ class UpdateCommand extends Command
     {
         $manager = new Manager(Manifest::loadFile(self::MANIFEST_FILE));
         $manager->update($this->getApplication()->getVersion(), true);
+
+        $output->writeln('');
+        $output->writeln('<info>' . PHP_EOL . '  Gizmo updated' . PHP_EOL . '</info>');
+        $output->writeln('');
     }
 }
