@@ -5,7 +5,7 @@
  * Gizmo Console Application
  *
  * @author  Olaf Luijks
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 // passthru('clear');
@@ -27,7 +27,7 @@ use Gizmo\Console\Commands\UpdateCommand;
 
 use Symfony\Component\Console\Application;
 
-$application = new Application('Gizmo Console Application', '0.0.1');
+$application = new Application('Gizmo Console Application', '0.0.2');
 
 $application->add(new ConfigCommand());
 // Mysql commands

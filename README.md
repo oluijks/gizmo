@@ -1,7 +1,7 @@
 # Gizmo
 Gizmo Console Application
 
-    Gizmo Console Application version 0.0.1
+    Gizmo Console Application version 0.0.2
 
     Usage:
       command [options] [arguments]
