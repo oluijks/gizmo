@@ -1,5 +1,9 @@
 # Gizmo
-Gizmo Console Application
+Gizmo Console Application.
+
+Just a collection of tools I use on a daily basis. Feel free to fork me or drop me a message if you are missing some command you want me to add.
+
+Email: <oluijks@gmail.com>
 
 ## License
 
@@ -14,7 +18,7 @@ Gizmo is open-sourced software licensed under the MIT license.
 
 ### Help
 
-    Gizmo Console Application version 0.0.9
+    Gizmo Console Application version 1.0.0
 
     Usage:
       command [options] [arguments]
