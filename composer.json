@@ -1,12 +1,16 @@
 {
     "name": "oluijks/gizmo",
     "description": "Gizmo Console Application",
+    "keywords": ["cli", "tools", "gizmo", "php", "ubuntu"],
+    "homepage": "https://github.com/oluijks/gizmo",
     "type": "project",
     "license": "MIT",
     "authors": [
         {
             "name": "Olaf Luijks",
-            "email": "oluijks@gmail.com"
+            "email": "oluijks@gmail.com",
+            "homepage": "http://oluijks.github.io/gizmo/",
+            "role": "Developer"
         }
     ],
     "require": {
