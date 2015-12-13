@@ -46,7 +46,7 @@ class UpdateCommand extends Command
         if ($manager->update($this->getApplication()->getVersion(), true))
         {
             $output->writeln('');
-            $output->writeln('<info>' . PHP_EOL . '  Gizmo updated to ' . $this->getApplication()->getVersion() . PHP_EOL . '</info>');
+            $output->writeln('<info>' . PHP_EOL . '  Gizmo was updated to the latest version' . PHP_EOL . '</info>');
             $output->writeln('');
         }
         else

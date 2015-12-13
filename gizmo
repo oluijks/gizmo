@@ -42,7 +42,6 @@ $gizmo->add(new RestartNginxCommand());
 $gizmo->add(new RestartPhp5Command());
 $gizmo->add(new RestartMySqlCommand());
 // Gizmo commands
-$gizmo->add(new ConfigCommand());
 $gizmo->add(new UpdateCommand());
 // Run baby
 $gizmo->run();
