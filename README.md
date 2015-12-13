@@ -10,8 +10,8 @@ Email: <oluijks@gmail.com>
 
 ## Installation
 
-    wget http://oluijks.github.io/gizmo/downloads/gizmo-1.0.8.phar
-    sudo mv gizmo-1.0.8.phar /usr/local/bin/gizmo
+    wget http://oluijks.github.io/gizmo/downloads/gizmo-1.0.9.phar
+    sudo mv gizmo-1.0.9.phar /usr/local/bin/gizmo
 
 ## Stuff used to make this
 * Symfony Console Component (https://github.com/symfony/console)
