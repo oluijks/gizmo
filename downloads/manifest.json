@@ -1,8 +1,8 @@
 [
     {
         "name": "gizmo.phar",
-        "sha1": "708bec0fc65d90aaf81b775ac42b2e2fc34af5cd",
-        "url": "http://oluijks.github.io/gizmo/downloads/gizmo-1.0.4.phar",
-        "version": "1.0.4"
+        "sha1": "82e44cfebb3a0c7b03fac842b6429bec2fb5bc63",
+        "url": "http://oluijks.github.io/gizmo/downloads/gizmo-1.0.5.phar",
+        "version": "1.0.5"
     }
 ]
