@@ -2,8 +2,6 @@
 
 namespace Gizmo\Console\Commands\Database\MySQL;
 
-error_reporting(0);
-
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -40,7 +38,7 @@ class DatabaseDumpCommand extends Command
     protected function configure()
     {
         $this->setName('db:dump')
-             ->setDescription('Dumps structure and contents of MySQL database and tables')
+             ->setDescription('Dumps a MySQL database')
              ->addArgument(
                  'name',
                  InputArgument::REQUIRED,

@@ -21,10 +21,12 @@ use Gizmo\Console\Commands\Database\MySQL\DatabaseDumpCommand;
 use Gizmo\Console\Commands\Database\MySQL\ListsDatabasesCommand;
 use Gizmo\Console\Commands\Downloads\DownloadWordPressCommand;
 use Gizmo\Console\Commands\Downloads\DownloadMagento2Command;
+use Gizmo\Console\Commands\Webserver\MakeNginxVhostCommand;
 use Gizmo\Console\Commands\Webserver\RestartPhp5Command;
 use Gizmo\Console\Commands\Webserver\RestartNginxCommand;
 use Gizmo\Console\Commands\Webserver\RestartMySqlCommand;
 use Gizmo\Console\Commands\Webserver\WebserverStatusCommand;
+use Gizmo\Console\Commands\MakeCommand;
 use Gizmo\Console\Commands\UpdateCommand;
 
 use Symfony\Component\Console\Application;
@@ -37,11 +39,13 @@ $gizmo->add(new ListsDatabasesCommand());
 $gizmo->add(new DownloadWordPressCommand());
 $gizmo->add(new DownloadMagento2Command());
 // Webserver commands
+$gizmo->add(new MakeNginxVhostCommand());
 $gizmo->add(new WebserverStatusCommand());
 $gizmo->add(new RestartNginxCommand());
 $gizmo->add(new RestartPhp5Command());
 $gizmo->add(new RestartMySqlCommand());
 // Gizmo commands
+$gizmo->add(new MakeCommand());
 $gizmo->add(new UpdateCommand());
 // Run baby
 $gizmo->run();

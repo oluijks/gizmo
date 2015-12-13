@@ -12,6 +12,7 @@ Gizmo is open-sourced software licensed under the MIT license.
 ## Stuff used to make this
 * Symfony Console Component (https://github.com/symfony/console)
 * Symfony Process Component (https://github.com/symfony/process)
+* Symfony Filesystem Component (https://github.com/symfony/filesystem)
 * Illuminate Database (https://github.com/illuminate/database)
 * MySQLDump - PHP (https://github.com/ifsnop/mysqldump-php)
 * Guzzle, an extensible PHP HTTP client (https://github.com/guzzle/guzzle)
@@ -35,140 +36,20 @@ Gizmo is open-sourced software licensed under the MIT license.
                             1 for normal output, 2 for more verbose output and 3 for debug
 
     Available commands:
-      config                      Configure Gizmo
       help                        Displays help for a command
       list                        Lists commands
-      update                      Updates Gizmo to the latest version
      db
-      db:dump                     Dumps structure and contents of MySQL database and tables
+      db:dump                     Dumps a MySQL database
       db:list                     Lists MySQL databases
-      download
-       download:magento2          Grab the lastest magento2 version
-       download:wordpress         Grab the lastest wordpress version
+     download
+      download:magento2           Grabs the latest magento2 source
+      download:wordpress          Grabs the latest wordpress source
+     gizmo
+      gizmo:make-command          Makes a new gizmo command
+      gizmo:update                Updates gizmo.phar to the latest version
      webserver
+      webserver:make-nginx-vhost  Makes a new nginx vhost file
       webserver:mysql:restart     Restarts MySQL
       webserver:nginx:restart     Restarts Engine-X
       webserver:php5-fpm:restart  Restarts PHP5-FPM
       webserver:status            Webserver status
-
-## ./gizmo help db:dump
-
-    [gizmo] ./gizmo help db:dump
-      Usage:
-        db:dump [options] [--] <name>
-
-      Arguments:
-        name                                The name of the database to dump
-
-      Options:
-            --dump-dir[=DUMP-DIR]           The location of the database dump
-
-      Help:
-       Dumps structure and contents of MySQL database and tables
-
-    [gizmo] ./gizmo db:dump information_schema --dump-dir=/home/oluijks
-
-       Username: root
-       Password:
-
-       Dumping database to /home/oluijks/information_schema-2015-12-12-1449933289.sql
-
-       All Done!
-
-## ./gizmo help db:list
-
-    [gizmo] ./gizmo help db:dump
-      Usage:
-        db:list [options]
-
-      Options:
-            --with-default-collation  Show the databases default collation names
-
-      Help:
-       Lists MySQL databases
-
-    [gizmo] ./gizmo db:list
-      Username: root
-      Password:
-
-      +--------------------+
-      | SCHEMA_NAME        |
-      +--------------------+
-      | information_schema |
-      | mysql              |
-      | performance_schema |
-      +--------------------+
-
-## ./gizmo help download:wordpress
-    [gizmo] ./gizmo help download:wordpress     
-      Usage:
-        download:wordpress
-
-      Help:
-       Grab the lastest wordpress version
-
-     [gizmo] ./gizmo download:wordpress
-
-         Downloading Wordpress...
-
-         All Done!
-
-## ./gizmo webserver:mysql:restart
-
-    Usage:
-      webserver:mysql:restart
-
-    Help:
-     Restarts MySQL
-
-    [gizmo] ./gizmo webserver:mysql:restart
-     mysql stop/waiting
-
-     mysql start/running, process 19395
-
-
-## ./gizmo help webserver:nginx:restart
-
-    Usage:
-      webserver:nginx:restart
-
-    Help:
-     Restarts Engine-X
-
-    [gizmo] ./gizmo webserver:nginx:restart
-     * Restarting nginx nginx
-
-     * nginx is running
-
-## ./gizmo help webserver:php5-fpm:restart
-
-    Usage:
-      webserver:php5-fpm:restart
-
-    Help:
-     Restarts PHP5-FPM
-
-    [gizmo] ./gizmo webserver:php5-fpm:restart
-     php5-fpm stop/waiting
-
-     php5-fpm start/running, process 19057
-
-## ./gizmo help webserver:status
-
-    Usage:
-      webserver:status
-
-    Help:
-     Webserver status
-
-     +------------------------------+--------------------------------------+
-     | Server yoda                                                         |
-     +------------------------------+--------------------------------------+
-     | PROCESS                      | STATUS                               |
-     +------------------------------+--------------------------------------+
-     | MySQL database engine        | mysql start/running, process 1201    |
-     | Nginx webserver              | * nginx is running                   |
-     | PHP5 FastCGI Process Manager | php5-fpm start/running, process 7374 |
-     +------------------------------+--------------------------------------+
-     | Server is up 2 days, 17 hours, 33 minutes                           |
-     +------------------------------+--------------------------------------+

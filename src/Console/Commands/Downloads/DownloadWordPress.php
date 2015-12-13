@@ -27,7 +27,7 @@ class DownloadWordPressCommand extends Command
     protected function configure()
     {
         $this->setName('download:wordpress')
-             ->setDescription('Grab the lastest wordpress version');
+             ->setDescription('Grabs the latest wordpress source');
     }
 
     /**
@@ -74,7 +74,7 @@ class DownloadWordPressCommand extends Command
 
         return $this;
     }
-    
+
     /**
      * Extract the zip file into the given directory
      *

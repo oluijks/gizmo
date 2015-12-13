@@ -27,7 +27,7 @@ class DownloadMagento2Command extends Command
     protected function configure()
     {
         $this->setName('download:magento2')
-             ->setDescription('Grab the lastest magento2 version');
+             ->setDescription('Grabs the latest magento2 source');
     }
 
     /**
@@ -74,7 +74,7 @@ class DownloadMagento2Command extends Command
 
         return $this;
     }
-    
+
     /**
      * Extract the zip file into the given directory
      *

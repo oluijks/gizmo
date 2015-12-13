@@ -28,7 +28,7 @@ class UpdateCommand extends Command
      */
     protected function configure()
     {
-        $this->setName('update')
+        $this->setName('gizmo:self-update')
              ->setDescription('Updates gizmo.phar to the latest version');
     }
 
