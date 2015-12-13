@@ -1,9 +1,15 @@
 # Gizmo
+
+[![Latest Stable Version](https://poser.pugx.org/oluijks/gizmo/v/stable)](https://packagist.org/packages/oluijks/gizmo) [![Total Downloads](https://poser.pugx.org/oluijks/gizmo/downloads)](https://packagist.org/packages/oluijks/gizmo) [![Latest Unstable Version](https://poser.pugx.org/oluijks/gizmo/v/unstable)](https://packagist.org/packages/oluijks/gizmo) [![License](https://poser.pugx.org/oluijks/gizmo/license)](https://packagist.org/packages/oluijks/gizmo)
+
 Gizmo Console Application.
 
 Just a collection of tools I use on a daily basis. Feel free to fork me or drop me a message if you are missing some command you want me to add.
 
 Email: <oluijks@gmail.com>
+
+## Download latest Phar
+http://oluijks.github.io/gizmo/downloads/gizmo-1.0.8.phar
 
 ## License
 
