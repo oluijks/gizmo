@@ -15,6 +15,7 @@ Gizmo is open-sourced software licensed under the MIT license.
 * Illuminate Database (https://github.com/illuminate/database)
 * MySQLDump - PHP (https://github.com/ifsnop/mysqldump-php)
 * Guzzle, an extensible PHP HTTP client (https://github.com/guzzle/guzzle)
+* Phar Update (https://github.com/kherge-abandoned/php-phar-update)
 
 ### Help
 
