@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-error_reporting(1);
+// error_reporting(1);
 
 /**
  * Updates Gizmo to the latest version
@@ -47,7 +47,7 @@ class UpdateCommand extends Command
         $manager->update($this->getApplication()->getVersion(), true);
 
         $output->writeln('');
-        $output->writeln('<info>' . PHP_EOL . '  Gizmo updated' . PHP_EOL . '</info>');
+        $output->writeln('<info>' . PHP_EOL . '  Gizmo updated to ' . $this->getApplication()->getVersion() . PHP_EOL . '</info>');
         $output->writeln('');
     }
 }
