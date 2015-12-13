@@ -13,6 +13,10 @@ Email: <oluijks@gmail.com>
     wget http://oluijks.github.io/gizmo/downloads/gizmo-1.0.9.phar
     sudo mv gizmo-1.0.9.phar /usr/local/bin/gizmo
 
+## Installation
+
+    gizmo gizmo:self-update
+
 ## Stuff used to make this
 * Symfony Console Component (https://github.com/symfony/console)
 * Symfony Process Component (https://github.com/symfony/process)
