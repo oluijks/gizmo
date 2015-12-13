@@ -5,7 +5,7 @@
  * Gizmo Console Application
  *
  * @author  Olaf Luijks
- * @version 1.0.0
+ * @version 1.0.9
  *
  * Copyright 2015 Olaf Luijks
  * Licensed under the MIT license
@@ -26,6 +26,7 @@ use Gizmo\Console\Commands\Webserver\RestartPhp5Command;
 use Gizmo\Console\Commands\Webserver\RestartNginxCommand;
 use Gizmo\Console\Commands\Webserver\RestartMySqlCommand;
 use Gizmo\Console\Commands\Webserver\WebserverStatusCommand;
+use Gizmo\Console\Commands\AboutCommand;
 use Gizmo\Console\Commands\MakeCommand;
 use Gizmo\Console\Commands\UpdateCommand;
 
@@ -45,6 +46,7 @@ $gizmo->add(new RestartNginxCommand());
 $gizmo->add(new RestartPhp5Command());
 $gizmo->add(new RestartMySqlCommand());
 // Gizmo commands
+$gizmo->add(new AboutCommand());
 $gizmo->add(new MakeCommand());
 $gizmo->add(new UpdateCommand());
 // Run baby

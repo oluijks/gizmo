@@ -24,7 +24,7 @@ Email: <oluijks@gmail.com>
 
 ### Help
 
-    Gizmo Console Application version 1.0.8
+    Gizmo Console Application version 1.0.9
 
     Usage:
       command [options] [arguments]
@@ -49,6 +49,7 @@ Email: <oluijks@gmail.com>
       download:magento2           Grabs the latest magento2 source
       download:wordpress          Grabs the latest wordpress source
      gizmo
+      gizmo:about                 Short information about Gizmo
       gizmo:make-command          Makes a new gizmo command
       gizmo:update                Updates gizmo.phar to the latest version
      webserver
