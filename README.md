@@ -8,12 +8,10 @@ Just a collection of tools I use on a daily basis. Feel free to fork me or drop 
 
 Email: <oluijks@gmail.com>
 
-## Download latest Phar
-http://oluijks.github.io/gizmo/downloads/gizmo-1.0.8.phar
+## Installation
 
-## License
-
-Gizmo is open-sourced software licensed under the MIT license.
+    wget http://oluijks.github.io/gizmo/downloads/gizmo-1.0.8.phar
+    sudo mv gizmo-1.0.8.phar /usr/local/bin/gizmo
 
 ## Stuff used to make this
 * Symfony Console Component (https://github.com/symfony/console)
@@ -59,3 +57,7 @@ Gizmo is open-sourced software licensed under the MIT license.
       webserver:nginx:restart     Restarts Engine-X
       webserver:php5-fpm:restart  Restarts PHP5-FPM
       webserver:status            Webserver status
+
+## License
+
+Gizmo is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
