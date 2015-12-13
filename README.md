@@ -13,7 +13,7 @@ Email: <oluijks@gmail.com>
     wget http://oluijks.github.io/gizmo/downloads/gizmo-1.0.9.phar
     sudo mv gizmo-1.0.9.phar /usr/local/bin/gizmo
 
-## Installation
+## Updating
 
     gizmo gizmo:self-update
 
