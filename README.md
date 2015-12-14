@@ -4,7 +4,7 @@
 
 Gizmo Console Application.
 
-Just a collection of tools I use on a daily basis. Feel free to fork me or drop me a message if you are missing some command you want me to add.
+Just a (incomplete) collection of tools I use on a daily basis. Feel free to fork me or drop me a message if you are missing some command you want me to add.
 
 Email: <oluijks@gmail.com>
 
