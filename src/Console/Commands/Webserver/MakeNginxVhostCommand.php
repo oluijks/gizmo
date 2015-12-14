@@ -35,25 +35,28 @@ class MakeNginxVhostCommand extends Command
     {
         $content = file_get_contents($this->getStub());
 
-        $name   = $input->getArgument('name');
+        $name = $input->getArgument('name');
 
         $helper = $this->getHelper('question');
 
-        $question   = new Question('What is the document root: ');
-        $root       = $helper->ask($input, $output, $question);
+        $question = new Question('What is the document root: ');
+        $root = $helper->ask($input, $output, $question);
 
-        $question   = new Question('What is the server name: ');
+        $question = new Question('What is the server name: ');
         $serverName = $helper->ask($input, $output, $question);
 
-        if (!$root)
+        if (!$root) {
             $root = '/usr/local/www/';
+        }
 
-        if ('/' !== substr($root, -1))
+        if ('/' !== substr($root, -1)) {
             $root .= '/';
+        }
 
-        if(!$serverName)
+        if (!$serverName) {
             $serverName = $name;
-        
+        }
+
         $content = str_replace('$NAME$', $name, $content);
         $content = str_replace('$ROOT$', $root, $content);
         $content = str_replace('$SERVER_NAME$', $serverName, $content);
@@ -62,7 +65,7 @@ class MakeNginxVhostCommand extends Command
 
         print_r($content);
 
-        $output->writeln('<comment>' . PHP_EOL . '  Copy this to /etc/nginx/sites-available/' . $name . PHP_EOL . '</comment>');
+        $output->writeln('<comment>'.PHP_EOL.'  Copy this to /etc/nginx/sites-available/' . $name . PHP_EOL . '</comment>');
         $output->writeln('');
     }
 
