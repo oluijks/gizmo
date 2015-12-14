@@ -3,26 +3,20 @@
 namespace Gizmo\Console\Commands\Downloads;
 
 use ZipArchive;
-use RuntimeException;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Grab the lastest wordpress version
+ * Grab the lastest wordpress version.
  *
  * @author  Olaf Luijks
  */
-class DownloadWordPressCommand extends Command
+class DownloadWordPress extends Command
 {
     /**
-     * Configure the command options
-     *
-     * @return void
+     * Configure the command options.
      */
     protected function configure()
     {
@@ -31,11 +25,10 @@ class DownloadWordPressCommand extends Command
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param  InputInterface   $input
-     * @param  OutputInterface  $output
-     * @return void
+     * @param InputInterface  $input
+     * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -48,11 +41,11 @@ class DownloadWordPressCommand extends Command
              ->extract($zipFile, $directory)
              ->cleanUp($zipFile);
 
-        $output->writeln('<info>' . PHP_EOL . '  All Done!' . PHP_EOL . '</info>');
+        $output->writeln('<info>'.PHP_EOL.'  All Done!'.PHP_EOL.'</info>');
     }
 
     /**
-     * Generate a random temporary filename
+     * Generate a random temporary filename.
      *
      * @return string
      */
@@ -62,29 +55,31 @@ class DownloadWordPressCommand extends Command
     }
 
     /**
-     * Download the temporary Zip to the given file
+     * Download the temporary Zip to the given file.
      *
-     * @param  string  $zipFile
+     * @param string $zipFile
+     *
      * @return $this
      */
     protected function download($zipFile)
     {
-        $response = (new Client)->get('https://wordpress.org/latest.zip');
+        $response = (new Client())->get('https://wordpress.org/latest.zip');
         file_put_contents($zipFile, $response->getBody());
 
         return $this;
     }
 
     /**
-     * Extract the zip file into the given directory
+     * Extract the zip file into the given directory.
      *
-     * @param  string  $zipFile
-     * @param  string  $directory
+     * @param string $zipFile
+     * @param string $directory
+     *
      * @return $this
      */
     protected function extract($zipFile, $directory)
     {
-        $archive = new ZipArchive;
+        $archive = new ZipArchive();
         $archive->open($zipFile);
         $archive->extractTo($directory);
         $archive->close();
@@ -93,9 +88,10 @@ class DownloadWordPressCommand extends Command
     }
 
     /**
-     * Clean-up the Zip file
+     * Clean-up the Zip file.
      *
-     * @param  string  $zipFile
+     * @param string $zipFile
+     *
      * @return $this
      */
     protected function cleanUp($zipFile)

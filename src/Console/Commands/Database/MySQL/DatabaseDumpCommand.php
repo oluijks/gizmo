@@ -4,18 +4,17 @@ namespace Gizmo\Console\Commands\Database\MySQL;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-
 use Ifsnop\Mysqldump as IMysqldump;
 
 /**
- * Dumps a given database to a given location
+ * Dumps a given database to a given location.
  *
  * @author  Olaf Luijks
+ *
  * @see https://github.com/ifsnop/mysqldump-php
  */
 class DatabaseDumpCommand extends Command
@@ -31,9 +30,7 @@ class DatabaseDumpCommand extends Command
     private $password;
 
     /**
-     * Configure the command options
-     *
-     * @return void
+     * Configure the command options.
      */
     protected function configure()
     {
@@ -49,11 +46,10 @@ class DatabaseDumpCommand extends Command
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param  InputInterface   $input
-     * @param  OutputInterface  $output
-     * @return void
+     * @param InputInterface  $input
+     * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -63,14 +59,16 @@ class DatabaseDumpCommand extends Command
         $this->askCredentials($input, $output);
 
         // Get arguments and options
-        $name     = $input->getArgument('name');
+        $name = $input->getArgument('name');
         $compress = $input->getOption('compress');
-        $dir      = $input->getOption('dump-dir');
+        $dir = $input->getOption('dump-dir');
 
         // Todo: create dumps dir if not exists
-        if (! $dir) $dir = getcwd() . '/dumps';
+        if (!$dir) {
+            $dir = getcwd().'/dumps';
+        }
 
-        $fileName = $dir . '/' . $name . '-' . date('Y-m-d') . '-' . time() . '.sql';
+        $fileName = $dir.'/'.$name.'-'.date('Y-m-d').'-'.time().'.sql';
 
         // Dump settings
         $dumpSettings = ['compress' => IMysqldump\Mysqldump::NONE];
@@ -79,36 +77,29 @@ class DatabaseDumpCommand extends Command
         if ('gzip' === $compress) {
             $dumpSettings = ['compress' => IMysqldump\Mysqldump::GZIP];
             $fileName .= '.gz';
-        }
-        elseif ('bzip2' === $compress)
-        {
+        } elseif ('bzip2' === $compress) {
             $dumpSettings = ['compress' => IMysqldump\Mysqldump::BZIP2];
             $fileName .= '.bz2';
         }
 
         // Try to create the database dump
-        try
-        {
+        try {
             $output->writeln('');
-            $output->writeln('<comment>  Dumping database to '. $fileName . '</comment>');
-            $dump = new IMysqldump\Mysqldump('mysql:host=localhost;dbname=' . $name, $this->username, $this->password, $dumpSettings);
+            $output->writeln('<comment>  Dumping database to '.$fileName.'</comment>');
+            $dump = new IMysqldump\Mysqldump('mysql:host=localhost;dbname='.$name, $this->username, $this->password, $dumpSettings);
             $dump->start($fileName);
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             $output->writeln('');
-            $output->writeln('<error> ' . PHP_EOL . '  Error: ' . $e->getMessage() . PHP_EOL . '</error>');
+            $output->writeln('<error> '.PHP_EOL.'  Error: '.$e->getMessage().PHP_EOL.'</error>');
             $output->writeln('');
             exit(-1);
         }
 
-        $output->writeln('<info>' . PHP_EOL . '  All Done!' . PHP_EOL . '</info>');
+        $output->writeln('<info>'.PHP_EOL.'  All Done!'.PHP_EOL.'</info>');
     }
 
     /**
-     * Asks the use for database credentials
-     *
-     * @return void
+     * Asks the use for database credentials.
      */
     private function askCredentials($input, $output)
     {

@@ -3,18 +3,15 @@
 namespace Gizmo\Console\Commands\Database\MySQL;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Question\Question;
-
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /**
- * Shows a table with database names
+ * Shows a table with database names.
  *
  * @author  Olaf Luijks
  */
@@ -31,9 +28,7 @@ class ListsDatabasesCommand extends Command
     private $password;
 
     /**
-     * Configure the command options
-     *
-     * @return void
+     * Configure the command options.
      */
     protected function configure()
     {
@@ -48,11 +43,10 @@ class ListsDatabasesCommand extends Command
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param  InputInterface   $input
-     * @param  OutputInterface  $output
-     * @return void
+     * @param InputInterface  $input
+     * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -64,10 +58,11 @@ class ListsDatabasesCommand extends Command
         $collation = $input->getOption('with-default-collation');
 
         // Setup table headers and rows
-        if ($collation)
+        if ($collation) {
             $headers = ['SCHEMA_NAME', 'DEFAULT_COLLATION_NAME'];
-        else
+        } else {
             $headers = ['SCHEMA_NAME'];
+        }
 
         $rows = $this->getDatabases($input, $username, $password, $collation);
 
@@ -78,24 +73,26 @@ class ListsDatabasesCommand extends Command
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param  InputInterface   $input
-     * @param  username         $username
-     * @param  password         $password
-     * @param  collation        $collation
-     * @return $rows            mixed
+     * @param InputInterface $input
+     * @param username       $username
+     * @param password       $password
+     * @param collation      $collation
+     *
+     * @return $rows mixed
      */
     protected function getDatabases($input, $username, $password, $collation)
     {
         $this->connect();
 
         $tables = 'SCHEMA_NAME';
-        if ($collation)
+        if ($collation) {
             $tables .= ', DEFAULT_COLLATION_NAME';
+        }
 
         $query = '
-            SELECT ' . $tables . '
+            SELECT '.$tables.'
             FROM INFORMATION_SCHEMA.SCHEMATA
             ORDER BY SCHEMA_NAME';
 
@@ -103,33 +100,32 @@ class ListsDatabasesCommand extends Command
 
         $rows = [];
 
-        for ($i = 0; $i < count($dbs); $i++) {
+        for ($i = 0; $i < count($dbs); ++$i) {
             $rows[$i][] = $dbs[$i]->SCHEMA_NAME;
-            if ($collation)
+            if ($collation) {
                 $rows[$i][] = $dbs[$i]->DEFAULT_COLLATION_NAME;
+            }
         }
 
         return $rows;
     }
 
     /**
-     * Connects to the database
-     *
-     * @return void
+     * Connects to the database.
      */
     private function connect()
     {
-        $capsule = new Capsule;
+        $capsule = new Capsule();
 
         $capsule->addConnection([
-            'driver'    => 'mysql',
-            'host'      => 'localhost',
-            'database'  => 'INFORMATION_SCHEMA',
-            'username'  => $this->username,
-            'password'  => $this->password,
-            'charset'   => 'utf8',
+            'driver' => 'mysql',
+            'host' => 'localhost',
+            'database' => 'INFORMATION_SCHEMA',
+            'username' => $this->username,
+            'password' => $this->password,
+            'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
+            'prefix' => '',
         ]);
 
         $capsule->setAsGlobal();
@@ -137,9 +133,7 @@ class ListsDatabasesCommand extends Command
     }
 
     /**
-     * Asks the use for database credentials
-     *
-     * @return void
+     * Asks the use for database credentials.
      */
     private function askCredentials($input, $output)
     {

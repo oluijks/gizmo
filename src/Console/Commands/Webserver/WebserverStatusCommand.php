@@ -3,26 +3,21 @@
 namespace Gizmo\Console\Commands\Webserver;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Helper\TableCell;
 
 /**
- * Shows some process statuses and server info
+ * Shows some process statuses and server info.
  *
  * @author  Olaf Luijks
  */
 class WebserverStatusCommand extends Command
 {
     /**
-     * Configure the command options
-     *
-     * @return void
+     * Configure the command options.
      */
     protected function configure()
     {
@@ -31,11 +26,10 @@ class WebserverStatusCommand extends Command
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param  InputInterface   $input
-     * @param  OutputInterface  $output
-     * @return void
+     * @param InputInterface  $input
+     * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -47,7 +41,7 @@ class WebserverStatusCommand extends Command
         $table = new Table($output);
         $table
             ->setHeaders([
-                [new TableCell('Server ' . exec('hostname'), ['colspan' => 2])],
+                [new TableCell('Server '.exec('hostname'), ['colspan' => 2])],
                 ['PROCESS', 'STATUS'],
             ])
             ->setRows([
@@ -55,7 +49,7 @@ class WebserverStatusCommand extends Command
                 ['Nginx webserver', ltrim($nginxretArr[0], ' ')],
                 ['PHP5 FastCGI Process Manager', $php5fpmretArr[0]],
                 new TableSeparator(),
-                [new TableCell('Server is ' . $uptimeretArr[0], ['colspan' => 2])],
+                [new TableCell('Server is '.$uptimeretArr[0], ['colspan' => 2])],
             ])
         ;
         $table->render();
