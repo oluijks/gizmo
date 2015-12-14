@@ -39,7 +39,7 @@ class MakeNginxVhostCommand extends Command
 
         $helper = $this->getHelper('question');
 
-        $question = new Question('What is the document root: ');
+        $question = new Question('Where is the the document root located: ');
         $root = $helper->ask($input, $output, $question);
 
         $question = new Question('What is the server name: ');
@@ -65,7 +65,7 @@ class MakeNginxVhostCommand extends Command
 
         print_r($content);
 
-        $output->writeln('<comment>'.PHP_EOL.'  Copy this to /etc/nginx/sites-available/' . $name . PHP_EOL . '</comment>');
+        $output->writeln('<comment>'.PHP_EOL.'  Copy this to /etc/nginx/sites-available/'.$name.PHP_EOL.'</comment>');
         $output->writeln('');
     }
 
