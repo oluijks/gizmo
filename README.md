@@ -8,15 +8,25 @@ Just a collection of tools I use on a daily basis. Feel free to fork me or drop 
 
 Email: <oluijks@gmail.com>
 
-## Installation
+## Install globally (manual)
 
-    wget http://oluijks.github.io/gizmo/downloads/gizmo-1.0.9.phar
-    
-    sudo chmod 0770 gizmo-1.0.9.phar && mv gizmo-1.0.9.phar /usr/local/bin/gizmo
+    $ wget http://oluijks.github.io/gizmo/downloads/gizmo-1.0.9.phar -O gizmo
 
-## Updating
+or with curl:
 
-    gizmo gizmo:self-update
+    $ curl http://oluijks.github.io/gizmo/downloads/gizmo-1.0.9.phar -o gizmo
+
+then:
+
+    $ sudo chmod 0770 gizmo && mv gizmo /usr/local/bin/gizmo
+
+Then, just run gizmo
+
+## Update globally (manual)
+
+You can update gizmo through this command:
+
+    $ sudo gizmo self-update
 
 ## Stuff used to make this
 * Symfony Console Component (https://github.com/symfony/console)
