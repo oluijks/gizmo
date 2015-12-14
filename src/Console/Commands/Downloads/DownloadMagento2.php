@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @author  Olaf Luijks
  */
-class DownloadMagento2 extends Command
+class DownloadMagento2Command extends Command
 {
     /**
      * Configure the command options.

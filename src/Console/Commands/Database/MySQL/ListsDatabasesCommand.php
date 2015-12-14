@@ -64,7 +64,7 @@ class ListsDatabasesCommand extends Command
             $headers = ['SCHEMA_NAME'];
         }
 
-        $rows = $this->getDatabases($input, $username, $password, $collation);
+        $rows = $this->getDatabases($input, $this->username, $this->password, $collation);
 
         $table = new Table($output);
         $output->writeln('');
