@@ -2,12 +2,12 @@
 <?php
 
 /**
- * Gizmo Console Application
+ * Gizmo Console Application (Rohecom)
  *
  * @author  Olaf Luijks
  * @version 1.0.9
  *
- * Copyright 2015 Olaf Luijks
+ * Copyright 2016 Olaf Luijks
  * Licensed under the MIT license
  * @link https://github.com/oluijks/gizmo/blob/master/LICENSE
  */
@@ -32,7 +32,7 @@ use Gizmo\Console\Commands\UpdateCommand;
 
 use Symfony\Component\Console\Application;
 
-$gizmo = new Application('Gizmo Console Application', '@package_version@ by Olaf Luijks');
+$gizmo = new Application('Gizmo Console Application (Rohecom)', '@package_version@ by Olaf Luijks');
 // Database commands
 $gizmo->add(new DatabaseDumpCommand());
 $gizmo->add(new ListsDatabasesCommand());

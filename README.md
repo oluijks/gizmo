@@ -2,19 +2,19 @@
 
 [![Latest Stable Version](https://poser.pugx.org/oluijks/gizmo/v/stable)](https://packagist.org/packages/oluijks/gizmo) [![Total Downloads](https://poser.pugx.org/oluijks/gizmo/downloads)](https://packagist.org/packages/oluijks/gizmo) [![Latest Unstable Version](https://poser.pugx.org/oluijks/gizmo/v/unstable)](https://packagist.org/packages/oluijks/gizmo) [![License](https://poser.pugx.org/oluijks/gizmo/license)](https://packagist.org/packages/oluijks/gizmo)
 
-Gizmo Console Application.
+Gizmo Console Application (Rohecom).
 
 Just a (incomplete) collection of tools I use on a daily basis. Feel free to fork me or drop me a message if you are missing some command you want me to add.
 
-Email: <oluijks@gmail.com>
+Email: <o.luijks@rohecom.nl>
 
 ## Install globally (manual)
 
-    $ wget http://oluijks.github.io/gizmo/downloads/gizmo-1.1.0.phar -O gizmo
+    $ wget http://oluijks.github.io/gizmo/downloads/gizmo-rohecom-1.1.0.phar -O gizmo
 
 or with curl:
 
-    $ curl http://oluijks.github.io/gizmo/downloads/gizmo-1.1.0.phar -o gizmo
+    $ curl http://oluijks.github.io/gizmo/downloads/gizmo-rohecom-1.1.0.phar -o gizmo
 
 then:
 
@@ -39,7 +39,7 @@ You can update gizmo through this command:
 
 ### Help
 
-    Gizmo Console Application version 1.1.0
+    Gizmo Console Application version 1.1.0 (Rohecom)
 
     Usage:
       command [options] [arguments]

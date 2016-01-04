@@ -31,7 +31,7 @@ class AboutCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('');
-        $output->writeln('<info>'.PHP_EOL.'  Gizmo - Console Application</info>');
+        $output->writeln('<info>'.PHP_EOL.'  Gizmo - Console Application (Rohecom)</info>');
         $output->writeln('<info>  ===========================</info>');
         $output->writeln('<comment>'.PHP_EOL.'  A collection of tools to manage mysql, nginx and php</comment>');
         $output->writeln('');
