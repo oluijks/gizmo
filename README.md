@@ -10,11 +10,11 @@ Email: <o.luijks@rohecom.nl>
 
 ## Install globally (manual)
 
-    $ wget http://oluijks.github.io/gizmo/downloads/gizmo-rohecom-1.1.0.phar -O gizmo
+    $ wget http://oluijks.github.io/gizmo/downloads/rohecom/gizmo-1.1.0.phar -O gizmo
 
 or with curl:
 
-    $ curl http://oluijks.github.io/gizmo/downloads/gizmo-rohecom-1.1.0.phar -o gizmo
+    $ curl http://oluijks.github.io/gizmo/downloads/rohecom/gizmo-1.1.0.phar -o gizmo
 
 then:
 
