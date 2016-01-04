@@ -16,6 +16,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 class DownloadMagento2Command extends Command
 {
     /**
+     * Location of the source.
+     */
+    const _SRC_URL = 'https://github.com/magento/magento2/archive/develop.zip';
+
+    /**
      * Configure the command options.
      */
     protected function configure()
@@ -63,7 +68,7 @@ class DownloadMagento2Command extends Command
      */
     protected function download($zipFile)
     {
-        $response = (new Client())->get('https://github.com/magento/magento2/archive/develop.zip');
+        $response = (new Client())->get(self::_SRC_URL);
         file_put_contents($zipFile, $response->getBody());
 
         return $this;
