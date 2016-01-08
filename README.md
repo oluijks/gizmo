@@ -10,11 +10,11 @@ Email: <oluijks@gmail.com>
 
 ## Install globally (manual)
 
-    $ wget http://oluijks.github.io/gizmo/downloads/gizmo-1.1.0.phar -O gizmo
+    $ wget http://oluijks.github.io/gizmo/downloads/gizmo-1.1.1.phar -O gizmo
 
 or with curl:
 
-    $ curl http://oluijks.github.io/gizmo/downloads/gizmo-1.1.0.phar -o gizmo
+    $ curl http://oluijks.github.io/gizmo/downloads/gizmo-1.1.1.phar -o gizmo
 
 then:
 
@@ -39,7 +39,7 @@ You can update gizmo through this command:
 
 ### Help
 
-    Gizmo Console Application version 1.1.0
+    Gizmo Console Application version 1.1.1
 
     Usage:
       command [options] [arguments]
