@@ -6,6 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Gizmo\Console\Commands\Contracts\Messages;
 
 /**
  * Generates a command.
@@ -15,13 +16,20 @@ use Symfony\Component\Console\Output\OutputInterface;
 class MakeCommand extends Command
 {
     /**
+     * @var Symfony\Component\Translation\Translator
+     */
+    private $messages;
+
+    /**
      * Configure the command options.
      */
     protected function configure()
     {
+        $this->messages = new Messages();
+
         $this->setName('gizmo:make-command')
-             ->setDescription('Makes a new gizmo command')
-             ->addArgument('name', InputArgument::REQUIRED, 'The name of the command');
+             ->setDescription($this->messages->translator->trans('make.command.desc'))
+             ->addArgument('name', InputArgument::REQUIRED, $this->messages->translator->trans('make.command.arg'));
     }
 
     /**
@@ -33,7 +41,17 @@ class MakeCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('');
-        $output->writeln('<info>'.PHP_EOL.'  Not implemented yet'.PHP_EOL.'</info>');
+        $output->writeln('<info>Not implemented yet</info>');
         $output->writeln('');
+    }
+
+    /**
+     * Get the stub file for the vhost.
+     *
+     * @return string
+     */
+    protected function getStub()
+    {
+        return __DIR__.'/stubs/command.stub';
     }
 }

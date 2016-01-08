@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Ifsnop\Mysqldump as IMysqldump;
+use Gizmo\Console\Commands\Contracts\Messages;
 
 /**
  * Dumps a given database to a given location.
@@ -19,6 +20,11 @@ use Ifsnop\Mysqldump as IMysqldump;
  */
 class DatabaseDumpCommand extends Command
 {
+    /**
+     * @var Symfony\Component\Translation\Translator
+     */
+    private $messages;
+
     /**
      * @var string
      */
@@ -34,15 +40,27 @@ class DatabaseDumpCommand extends Command
      */
     protected function configure()
     {
+        $this->messages = new Messages();
+
         $this->setName('db:dump')
-             ->setDescription('Dumps a MySQL database')
+             ->setDescription($this->messages->translator->trans('db.dump.desc'))
              ->addArgument(
                  'name',
                  InputArgument::REQUIRED,
-                 'The name of the database to dump'
+                 $this->messages->translator->trans('db.dump.arg')
              )
-             ->addOption('dump-dir', null, InputOption::VALUE_OPTIONAL, 'The location of the database dump')
-             ->addOption('compress', 'bzip2|gzip', InputOption::VALUE_OPTIONAL, 'Compress the database dump');
+             ->addOption(
+                 'dump-dir',
+                 null,
+                 InputOption::VALUE_OPTIONAL,
+                 $this->messages->translator->trans('db.dump.option.location')
+             )
+             ->addOption(
+                 'compress',
+                 'bzip2|gzip',
+                 InputOption::VALUE_OPTIONAL,
+                 $this->messages->translator->trans('db.dump.option.compress')
+             );
     }
 
     /**
@@ -53,9 +71,10 @@ class DatabaseDumpCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('');
-
         // Ask the user for database credentials
+        $output->writeln('');
+        $output->writeln($this->messages->translator->trans('db.list.db.credentials'));
+        $output->writeln('');
         $this->askCredentials($input, $output);
 
         // Get arguments and options
@@ -63,9 +82,18 @@ class DatabaseDumpCommand extends Command
         $compress = $input->getOption('compress');
         $dir = $input->getOption('dump-dir');
 
-        // Todo: create dumps dir if not exists
+        // Create dumps dir if not exists
         if (!$dir) {
             $dir = getcwd().'/dumps';
+            if (!is_dir($dir)) {
+                if (!mkdir($dir, 01775)) {
+                    $output->writeln(
+                        $this->messages->translator->trans('db.dump.option.location.error')
+                    );
+                    $output->writeln('');
+                    exit(-1);
+                }
+            }
         }
 
         $fileName = $dir.'/'.$name.'-'.date('Y-m-d').'-'.time().'.sql';
@@ -85,17 +113,23 @@ class DatabaseDumpCommand extends Command
         // Try to create the database dump
         try {
             $output->writeln('');
-            $output->writeln('<comment>  Dumping database to '.$fileName.'</comment>');
-            $dump = new IMysqldump\Mysqldump('mysql:host=localhost;dbname='.$name, $this->username, $this->password, $dumpSettings);
+            $output->writeln($this->messages->translator->trans('db.dump.message.dumping.db', ['%fileName%' => $fileName]));
+            $dump = new IMysqldump\Mysqldump(
+                'mysql:host=localhost;dbname='.$name,
+                $this->username,
+                $this->password, $dumpSettings
+            );
             $dump->start($fileName);
+            $output->writeln('');
         } catch (\Exception $e) {
             $output->writeln('');
-            $output->writeln('<error> '.PHP_EOL.'  Error: '.$e->getMessage().PHP_EOL.'</error>');
+            $output->writeln($this->messages->translator->trans('db.dump.message.dumping.error', ['errorMessage' => $e->getMessage()]));
             $output->writeln('');
             exit(-1);
         }
 
-        $output->writeln('<info>'.PHP_EOL.'  All Done!'.PHP_EOL.'</info>');
+        $output->writeln($this->messages->translator->trans('app.all.done'));
+        $output->writeln('');
     }
 
     /**
@@ -104,10 +138,10 @@ class DatabaseDumpCommand extends Command
     private function askCredentials($input, $output)
     {
         $helper = $this->getHelper('question');
-        $question = new Question('Username: ');
+        $question = new Question($this->messages->translator->trans('db.username'));
         $this->username = $helper->ask($input, $output, $question);
 
-        $question = new Question('Password: ');
+        $question = new Question($this->messages->translator->trans('db.password'));
         $question->setHidden(true);
         $question->setHiddenFallback(false);
         $this->password = $helper->ask($input, $output, $question);

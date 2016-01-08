@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Gizmo\Console\Commands\Contracts\Messages;
 
 /**
  * Grab the lastest wordpress version.
@@ -15,6 +16,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class DownloadWordPressCommand extends Command
 {
+    /**
+     * @var Symfony\Component\Translation\Translator
+     */
+    private $messages;
+
     /**
      * Location of the source.
      */
@@ -25,8 +31,10 @@ class DownloadWordPressCommand extends Command
      */
     protected function configure()
     {
+        $this->messages = new Messages();
+
         $this->setName('download:wordpress')
-             ->setDescription('Grabs the latest wordpress source');
+             ->setDescription($this->messages->translator->trans('downloads.grabs.wordpress'));
     }
 
     /**
@@ -40,13 +48,15 @@ class DownloadWordPressCommand extends Command
         $directory = getcwd();
 
         $output->writeln('');
-        $output->writeln('<comment>  Downloading Wordpress...</comment>');
+        $output->writeln($this->messages->translator->trans('downloads.downloading.wordpress'));
 
         $this->download($zipFile = $this->makeFilename())
              ->extract($zipFile, $directory)
              ->cleanUp($zipFile);
 
-        $output->writeln('<info>'.PHP_EOL.'  All Done!'.PHP_EOL.'</info>');
+        $output->writeln('');
+        $output->writeln($this->messages->translator->trans('app.all.done'));
+        $output->writeln('');
     }
 
     /**
@@ -56,7 +66,7 @@ class DownloadWordPressCommand extends Command
      */
     protected function makeFilename()
     {
-        return getcwd().'/wordpres_'.md5(time().uniqid()).'.zip';
+        return getcwd().'/wordpress_'.md5(time().uniqid()).'.zip';
     }
 
     /**
