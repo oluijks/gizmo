@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Question\Question;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Gizmo\Console\Commands\Contracts\Messages;
 
 /**
  * Shows a table with database names.
@@ -17,6 +18,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
  */
 class ListsDatabasesCommand extends Command
 {
+    /**
+     * @var Symfony\Component\Translation\Translator
+     */
+    private $messages;
+
     /**
      * @var string
      */
@@ -32,13 +38,15 @@ class ListsDatabasesCommand extends Command
      */
     protected function configure()
     {
+        $this->messages = new Messages();
+
         $this->setName('db:list')
-             ->setDescription('Lists MySQL databases')
+             ->setDescription($this->messages->translator->trans('db.list.desc'))
              ->addOption(
                 'with-default-collation',
                 null,
                 InputOption::VALUE_NONE,
-                'Show the databases default collation names'
+                $this->messages->translator->trans('db.list.option')
              );
     }
 
@@ -50,9 +58,11 @@ class ListsDatabasesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // Ask the user for database credentials
+        $output->writeln('');
+        $output->writeln($this->messages->translator->trans('db.list.db.credentials'));
         $output->writeln('');
 
-        // Ask the user for database credentials
         $this->askCredentials($input, $output);
 
         $collation = $input->getOption('with-default-collation');
@@ -64,7 +74,12 @@ class ListsDatabasesCommand extends Command
             $headers = ['SCHEMA_NAME'];
         }
 
-        $rows = $this->getDatabases($input, $this->username, $this->password, $collation);
+        $rows = $this->getDatabases(
+            $input,
+            $this->username,
+            $this->password,
+            $collation
+        );
 
         $table = new Table($output);
         $output->writeln('');
@@ -138,10 +153,14 @@ class ListsDatabasesCommand extends Command
     private function askCredentials($input, $output)
     {
         $helper = $this->getHelper('question');
-        $question = new Question('Username: ');
+        $question = new Question(
+            $this->messages->translator->trans('db.username')
+        );
         $this->username = $helper->ask($input, $output, $question);
 
-        $question = new Question('Password: ');
+        $question = new Question(
+            $this->messages->translator->trans('db.password')
+        );
         $question->setHidden(true);
         $question->setHiddenFallback(false);
         $this->password = $helper->ask($input, $output, $question);

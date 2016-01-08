@@ -5,6 +5,7 @@ namespace Gizmo\Console\Commands\Webserver;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Gizmo\Console\Commands\Contracts\Messages;
 
 /**
  * Restart the mysql engine.
@@ -16,12 +17,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 class RestartMySqlCommand extends Command
 {
     /**
+     * @var Symfony\Component\Translation\Translator
+     */
+    private $messages;
+
+    /**
      * Configure the command options.
      */
     protected function configure()
     {
+        $this->messages = new Messages();
+
         $this->setName('webserver:mysql:restart')
-             ->setDescription('Restarts MySQL');
+             ->setDescription($this->messages->translator->trans('webserver.restart.mysql.command.desc'));
     }
 
     /**
@@ -35,11 +43,11 @@ class RestartMySqlCommand extends Command
         exec('sudo service mysql restart 2>&1', $retArr, $retVal);
 
         $output->writeln('');
-        $output->writeln('<info>'.PHP_EOL.' '.$retArr[0].'</info>');
+        $output->writeln('<info>'.$retArr[0].'</info>');
 
         $o = exec('sudo service mysql status 2>&1');
 
-        $output->writeln('<comment>'.PHP_EOL.' '.$o.PHP_EOL.'</comment>');
+        $output->writeln('<comment>'.$o.'</comment>');
         $output->writeln('');
     }
 }

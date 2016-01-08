@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Gizmo\Console\Commands\Contracts\Messages;
 
 /**
  * Grab the lastest magento2 version.
@@ -15,6 +16,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class DownloadMagento2Command extends Command
 {
+    /**
+     * @var Symfony\Component\Translation\Translator
+     */
+    private $messages;
+
     /**
      * Location of the source.
      */
@@ -25,8 +31,10 @@ class DownloadMagento2Command extends Command
      */
     protected function configure()
     {
+        $this->messages = new Messages();
+
         $this->setName('download:magento2')
-             ->setDescription('Grabs the latest magento2 source');
+             ->setDescription($this->messages->translator->trans('downloads.grabs.magento2'));
     }
 
     /**
@@ -40,13 +48,15 @@ class DownloadMagento2Command extends Command
         $directory = getcwd();
 
         $output->writeln('');
-        $output->writeln('<comment>  Downloading Magento2...</comment>');
+        $output->writeln($this->messages->translator->trans('downloads.downloading.magento2'));
 
         $this->download($zipFile = $this->makeFilename())
              ->extract($zipFile, $directory)
              ->cleanUp($zipFile);
 
-        $output->writeln('<info>'.PHP_EOL.'  All Done!'.PHP_EOL.'</info>');
+        $output->writeln('');
+        $output->writeln($this->messages->translator->trans('app.all.done'));
+        $output->writeln('');
     }
 
     /**

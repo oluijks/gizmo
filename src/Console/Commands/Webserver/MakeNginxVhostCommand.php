@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Gizmo\Console\Commands\Contracts\Messages;
 
 /**
  * Generates a nginx vhost file.
@@ -16,13 +17,20 @@ use Symfony\Component\Console\Question\Question;
 class MakeNginxVhostCommand extends Command
 {
     /**
+     * @var Symfony\Component\Translation\Translator
+     */
+    private $messages;
+
+    /**
      * Configure the command options.
      */
     protected function configure()
     {
+        $this->messages = new Messages();
+
         $this->setName('webserver:make-nginx-vhost')
-             ->setDescription('Makes a new nginx vhost file')
-             ->addArgument('name', InputArgument::REQUIRED, 'The name of the vhost file');
+             ->setDescription($this->messages->translator->trans('webserver.nginx.vhost.command.desc'))
+             ->addArgument('name', InputArgument::REQUIRED, $this->messages->translator->trans('webserver.nginx.vhost.arg'));
     }
 
     /**
@@ -39,10 +47,10 @@ class MakeNginxVhostCommand extends Command
 
         $helper = $this->getHelper('question');
 
-        $question = new Question('Where is the the document root located: ');
+        $question = new Question($this->messages->translator->trans('webserver.nginx.vhost.docroot.location'));
         $root = $helper->ask($input, $output, $question);
 
-        $question = new Question('What is the server name: ');
+        $question = new Question($this->messages->translator->trans('webserver.nginx.vhost.servername'));
         $serverName = $helper->ask($input, $output, $question);
 
         if (!$root) {
@@ -65,7 +73,8 @@ class MakeNginxVhostCommand extends Command
 
         print_r($content);
 
-        $output->writeln('<comment>'.PHP_EOL.'  Copy this to /etc/nginx/sites-available/'.$name.PHP_EOL.'</comment>');
+        $output->writeln('');
+        $output->writeln($this->messages->translator->trans('webserver.nginx.vhost.copy.this', ['%name%' => $name]));
         $output->writeln('');
     }
 

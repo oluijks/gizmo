@@ -5,6 +5,7 @@ namespace Gizmo\Console\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Gizmo\Console\Commands\Contracts\Messages;
 
 /**
  * About command.
@@ -14,12 +15,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 class AboutCommand extends Command
 {
     /**
+     * @var Symfony\Component\Translation\Translator
+     */
+    private $messages;
+
+    /**
      * Configure the command options.
      */
     protected function configure()
     {
+        $this->messages = new Messages();
+
         $this->setName('gizmo:about')
-             ->setDescription('Short information about Gizmo');
+             ->setDescription($this->messages->translator->trans('about.command.desc'));
     }
 
     /**
@@ -31,9 +39,10 @@ class AboutCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('');
-        $output->writeln('<info>'.PHP_EOL.'  Gizmo - Console Application (Rohecom)</info>');
-        $output->writeln('<info>  =====================================</info>');
-        $output->writeln('<comment>'.PHP_EOL.'  A collection of tools to manage mysql, nginx and php</comment>');
+        $output->writeln($this->messages->translator->trans('app.name'));
+        $output->writeln('<info>===========================</info>');
+        $output->writeln('');
+        $output->writeln($this->messages->translator->trans('app.desc'));
         $output->writeln('');
     }
 }
